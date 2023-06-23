@@ -1,0 +1,72 @@
+@use '../abstracts/' as *;
+@use 'typography' as *;
+
+html {
+    font-family: font-family("poppins"), font-family("roboto"), 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: $fs-root;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    line-height: 1.4;
+}
+
+p {
+    font-size: font-size(400);
+    font-weight: 400;
+
+    & b, & strong {
+        font-weight: 700;
+    }
+
+    & em, & i {
+        font-style: italic;
+    }
+
+    & a {
+        font-weight: 700;
+    }
+
+    &.crop {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+hr {
+    border: 0.1em solid color(primary);
+}
+
+a {
+    color: color("primary");
+
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:before {
+        content: '';
+        position: absolute;
+        height: 0.1em; // 2px;
+        bottom: -0.12rem;
+        left: 0;
+            right: 0;
+        background-color: color(primary);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s;
+    }
+
+    &:hover {
+        &:before {
+            transform-origin: left;
+            transform: scaleX(1);
+        }
+    }
+}

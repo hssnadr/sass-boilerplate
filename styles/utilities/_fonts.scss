@@ -1,0 +1,20 @@
+@use "../abstracts" as *;
+
+@each $ff-id, $ff-val in $font-families {
+    .ff-#{$ff-id} {
+        font-family: $ff-val;
+    }
+}
+
+// class: .fs-200
+@each $size-id, $size-val in $font-sizes {
+    .fs-#{$size-id} {
+        font-size: $size-val;
+    }
+}
+
+@for $i from 1 to 10 {
+    .fw-#{$i}00 {
+        font-weight: #{$i}00;
+    }
+}

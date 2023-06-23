@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+.container {
+    $padding: size(400);
+    $max-width: map-get($breakpoints, "desktop");
+    width: min(100% - 2*$padding, $max-width);
+    margin-inline: auto;
+}
+
+.overlay {
+    // overlay container with scroll
+    // source: https://stackoverflow.com/questions/9280258/prevent-body-scrolling-but-allow-overlay-scrolling
+    // codepen: https://codepen.io/fcalderan/pen/qBYyRgE?editors=0010
+    position: fixed;
+    overflow-y: scroll;
+    inset: 0;
+}

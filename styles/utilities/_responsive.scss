@@ -1,0 +1,41 @@
+@use "../abstracts/" as *;
+
+.smartphone {
+    &--except {
+        // display: block;
+        @include mq("smartphone") {
+            display: none;
+        }
+    }
+}
+
+.desktop {
+    &--only {
+        display: none;
+        @include mq("desktop") {
+            display: block;
+        }
+    }
+
+    &--except {
+        // display: block;
+        @include mq("desktop") {
+            display: none;
+        }
+    }
+}
+
+.tablet {
+    &--only {
+        display: none;
+        @include mq("tablet") {
+            display: block;
+        }
+    }
+
+    &--except {
+        @include mq("tablet") {
+            display: none;
+        }
+    }
+}

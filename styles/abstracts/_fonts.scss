@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "functions" as *;
+
+// ----------------------------
+// ------- FONT FAMILY --------
+// ----------------------------
+
+$ff-poppins: "Poppins", sans-serif;
+$ff-roboto: "Roboto", sans-serif;
+
+$font-families: (
+  poppins: $ff-poppins,
+  roboto: $ff-roboto
+);
+
+@function font-family($font-family) {
+  @if map.has-key($font-families, $font-family) {
+      @return map.get($font-families, $font-family);
+  }
+  @else {
+      @error '$font-families does not have that family!';
+  }
+}
+
+// ----------------------------
+// -------- FONT SIZES --------
+// ----------------------------
+$fs-root: 16px!default;
+
+$font-sizes: (
+  200: rem($fs-root - 4px, $fs-root),
+  300: rem($fs-root - 2px, $fs-root),
+  400: 1rem,
+  500: rem($fs-root + 4px, $fs-root),
+  600: rem($fs-root + 8px, $fs-root),
+  700: rem($fs-root + 12px, $fs-root),
+  800: rem($fs-root + 16px, $fs-root),
+  900: rem($fs-root + 22px, $fs-root),
+  1000: rem($fs-root + 54px, $fs-root)
+);
+
+@function font-size($font-size) {
+  @if map.has-key($font-sizes, $font-size) {
+      @return map.get($font-sizes, $font-size);
+  }
+  @else {
+      @error '$font-sizes does not have that size!';
+  }
+}

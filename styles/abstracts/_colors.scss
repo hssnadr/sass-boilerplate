@@ -1,0 +1,50 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+
+// Color swatch
+$color-white: #fff;
+$color-grey: #494949;
+$color-black: #050505;
+
+$color-red: #E83A4E;
+$color-yellow: #FFE800;
+$color-blue: #5BC3E0;
+$color-green: #71E394;
+
+$color-transparent: transparent;
+
+// Colors
+$colors: (
+    primary: (
+        400: $color-black
+        ),
+    secondary: (
+        400: $color-green
+        ),
+    tertiary: (
+        400: $color-red
+    ),
+    bg: (
+        400: $color-white
+    ),
+    transparent: (
+        400: $color-transparent
+    ),
+    neutral: (
+        100: white,
+        300: #545454,
+        400: $color-grey,
+        500: #404040,
+        900: #1E1E1E
+    )
+);
+
+@function color($color, $shade: 400) {
+    @if map.has-key($colors, $color, $shade) {
+        @return map.get($colors, $color, $shade);
+    }
+    @else {
+        @error '$colors does not have that color!';
+    }
+}

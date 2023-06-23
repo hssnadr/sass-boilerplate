@@ -1,0 +1,13 @@
+@use '../base/' as *;
+
+.btn {
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--text {
+        @extend a;
+        border: none;
+        background-color: transparent;
+    }
+}

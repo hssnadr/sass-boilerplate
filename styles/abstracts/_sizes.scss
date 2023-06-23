@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "fonts" as *;
+@use "functions" as *;
+
+$sizes: (
+    100: rem($fs-root - 12px, $fs-root),
+    200: rem($fs-root - 8px, $fs-root),
+    300: rem($fs-root - 4px, $fs-root),
+    400: 1rem,
+    500: rem($fs-root + 4px, $fs-root),
+    600: rem($fs-root + 8px, $fs-root),
+    700: rem($fs-root + 16px, $fs-root),
+    800: rem($fs-root + 32px, $fs-root),
+    900: rem($fs-root + 64px, $fs-root)
+);
+
+@function size($size) {
+    @if map.has-key($sizes, $size) {
+        @return map.get($sizes, $size);
+    }
+    @else {
+        @error '$sizes does not have that size!';
+    }
+}
+
+$header-heights: (
+    smartphone: 3rem,
+    desktop: 4.5rem
+);
+
+@function header-height($size) {
+    @if map.has-key($header-heights, $size) {
+        @return map.get($header-heights, $size);
+    }
+    @else {
+        @error '$header-heights does not have that size!';
+    }
+}

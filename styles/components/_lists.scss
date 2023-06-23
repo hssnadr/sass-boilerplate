@@ -1,0 +1,7 @@
+@use '../abstracts/' as *;
+
+.list {
+    &--text {
+        padding-left: size(700);
+    }
+}

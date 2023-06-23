@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "sass:math";
+@use '../abstracts/' as *;
+
+// taken from: https://www.youtube.com/watch?v=z2kuC7w9emE&list=PLRB_Ele7crxxW43W-iypjp4eYPh-APvB3
+
+[class*="grid-"] {
+    // generic definition
+    // all classes starting with "grid-" will have following properties
+    display: grid;
+}
+
+.grid-even-columns {
+    // display: grid; -> useless because of previous definition
+    $max-col-width: math.div(map.get($breakpoints, "tablet"), 2);
+    grid-template-columns: repeat(auto-fit, minmax(min($max-col-width, 100%), 1fr)); // auto number of columns (repeat + auto-fit) with minimum size (300px) preventing overflow (min(300px, 100%))
+}
+
+@include mq("tablet") {
+    .grid-auto-flow {
+        // display grid in equal columns
+        grid-auto-flow: column;
+        grid-template-columns: 1fr;
+        // note: if not in the media query, display grid in row (default) because of the generic "grid-" class definition
+    }
+}
+
+.grid-img-cover>* {
+    // grid-img-cover should contain 2 elements: 1 content (text or whatever) and 1 image
+    grid-column: 1/2;
+    grid-row: 1/2;
+    // >> the 2 elements should superpose cause they fill the same cells, then set image z-index to -1 to push it backward
+}
+
+.grid-img-cover>img {
+    z-index: -1;
+    object-fit: cover; // optional
+    aspect-ratio: 16/9; // optional
+}

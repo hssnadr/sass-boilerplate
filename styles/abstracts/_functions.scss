@@ -1,0 +1,26 @@
+@use "sass:meta";
+@use "sass:map";
+@use "sass:math";
+
+@function glow($radius, $color) {
+  @return drop-shadow($radius $radius $radius $color) drop-shadow($radius -1*$radius $radius $color) drop-shadow(-1*$radius $radius $radius $color) drop-shadow(-1*$radius -1*$radius $radius $color);
+}
+
+// Synthax to call function : rem(5) / rem($size: 5) / rem($size: 5, $base: 10) ...
+@function rem($size, $base: $fs-root) {
+  @return 1rem * strip-unit(math.div($size, $base));
+}
+
+@function em($size, $base: $fs-root) {
+  @return 1em * strip-unit(math.div($size, $base));
+}
+
+// Remove units
+// From https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+  @if meta.type-of($number)=='number' and not math.is-unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+
+  @return $number;
+}
